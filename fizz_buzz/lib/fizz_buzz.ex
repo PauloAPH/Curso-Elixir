@@ -5,11 +5,18 @@ defmodule FizzBuzz do
     |> handle_file_read()
   end
 
+  def fizz_buzz_lenght(l) do
+
+    list = 1..l
+    Enum.to_list(list)
+    |> Enum.map(&evaluate_numbers/1)
+  end
+
   defp handle_file_read({:ok, result}) do
     result =
       result
       |> String.split(",")
-      |> Enum.map(&convert_and_evaluate_numbers/1)
+      |> Enum.map(fn n -> convert_and_evaluate_numbers(n) end)
       {:ok, result}
   end
 
